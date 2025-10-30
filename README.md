@@ -1,4 +1,4 @@
-# Progetto_TypeScript
+# Progetto_Angular_1_NTT_DATA
 
 ## 🚀Project Overview
 
@@ -63,6 +63,6 @@ sessionStorage.setItem('gorest_token', 'YOUR_PERSONAL_TOKEN');
 ```
 
 ## 🔗Explore the live website here:
-[https://codepen.io/Elektra9000/pen/XJJZLJZ]
+[progetto-angular-1-per-ntt-data.netlify.app]
 
 
