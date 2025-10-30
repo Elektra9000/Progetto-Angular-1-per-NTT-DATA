@@ -63,6 +63,6 @@ sessionStorage.setItem('gorest_token', 'YOUR_PERSONAL_TOKEN');
 ```
 
 ## 🔗Explore the live website here:
-[progetto-angular-1-per-ntt-data.netlify.app]
+[Try Me](https://progetto-angular-1-per-ntt-data.netlify.app/)
 
 
