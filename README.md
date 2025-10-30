@@ -1,59 +1,66 @@
-# ProgettoAngular1
+# Progetto_TypeScript
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.17.
+## 🚀Project Overview
 
-## Development server
+This Angular application was developed as a training project. It features token-based authentication (login), user management, a dynamic post feed with comments and replies, a search section for exploring published content, and a responsive interface built with standalone components and lazy-loaded routes for optimal performance.
 
-To start a local development server, run:
 
-```bash
+## 📂Project Structure
+  
+The application is divided into the following sections:
+- Login — the first page, which requires a token to access. You can generate one directly here.
+- Home Page 
+- Posts Page — allows users to comment, like, view existing comments, and edit posts.
+- Proponents Page — shows a list of users with the ability to view their posts by clicking on their name, as well as create or delete users.
+- Search Page — lets users search for available posts by typing keywords.
+
+## 🧩Main Libraries Used
+This project is built with:
+- Angular 19 — core framework for building the app
+- Angular Material — UI components and styling
+- RxJS — reactive data handling
+- Angular Router — navigation and lazy loading
+- Angular ESLint — linting and code quality tools
+- Karma & Jasmine — unit testing setup
+
+All dependencies are listed in `package.json`. No global installations required.
+
+## 📊Test & Coverage
+- ✅ 33 unit tests successfully executed
+- ✅ Overall coverage:
+- Statements: 67.83% (232/342)
+- Branches: 41.75% (38/91)
+- Functions: 54.32% (44/81)
+- Lines: 69.32% (217/313)
+
+## ⚙Project Installation
+
+Clone the repo:
+```sh
+https://github.com/Elektra9000/Progetto-Angular-1-per-NTT-DATA
+```
+
+Install required packages:
+```sh
+npm install
+```
+
+- Run the development server:
+```sh
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+To execute unit tests and generate the coverage report:
+```sh
+ng test --watch=false --code-coverage
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+To access protected features, you need to insert a personal token into sessionStorage.
+You can obtain a token by registering at GoREST and manually setting it:
 
-```bash
-ng generate --help
-```
+sessionStorage.setItem('gorest_token', 'YOUR_PERSONAL_TOKEN');
 
-## Building
+## 🔗Explore the live website here:
+[https://codepen.io/Elektra9000/pen/XJJZLJZ]
 
-To build the project run:
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
