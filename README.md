@@ -55,10 +55,12 @@ To execute unit tests and generate the coverage report:
 ng test --watch=false --code-coverage
 ```
 
+## 🔐Authentication
 To access protected features, you need to insert a personal token into sessionStorage.
-You can obtain a token by registering at GoREST and manually setting it:
-
+You can obtain a token by registering at GoREST and manually setting it in the browser console:
+```sh
 sessionStorage.setItem('gorest_token', 'YOUR_PERSONAL_TOKEN');
+```
 
 ## 🔗Explore the live website here:
 [https://codepen.io/Elektra9000/pen/XJJZLJZ]
