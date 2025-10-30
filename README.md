@@ -62,7 +62,7 @@ You can obtain a token by registering at [GoREST](https://gorest.co.in/) and man
 sessionStorage.setItem('gorest_token', 'YOUR_PERSONAL_TOKEN');
 ```
 
-## 🔗Explore the live website here:
-[Try Me](https://progetto-angular-1-per-ntt-data.netlify.app/)
+## 🔗Explore the live website [here](https://progetto-angular-1-per-ntt-data.netlify.app/):
+
 
 
