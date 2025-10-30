@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=League+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.home-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(#e7f8ec, #dff3e6);
+  overflow: hidden;
+}
+
+.home-card {
+  border: 2px solid #89c997;
+  padding: 32px;
+  border-radius: 8px;
+  background: white;
+  max-width: 600px;
+  text-align: center;
+}
+
+.logo {
+  font-family: 'Birthstone', cursive;
+  font-size: 72px;
+  color: #2fa66a;
+  margin: 0;
+}
+
+.tagline {
+  font-family: 'Birthstone', cursive;
+  font-size: 36px;
+  color: #1e78b6;
+  font-style: italic;
+  margin-top: 0px;
+  margin-bottom: 24px;
+}
+
+.home-list, .home-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: #333;
+  text-align: left;
+}
+
+.home-list ul {
+  padding-left: 20px;
+  margin-top: 12px;
+}
+
+.home-list li {
+  margin-bottom: 8px;
+}

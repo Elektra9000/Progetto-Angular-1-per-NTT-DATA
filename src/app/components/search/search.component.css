@@ -1,0 +1,206 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(#e7f8ec, #dff3e6) !important;
+  color: #1f2937 !important;
+  box-sizing: border-box;
+}
+
+.posts-wrapper {
+  background: transparent !important;
+}
+
+.posts-wrapper,
+input,
+textarea {
+  padding: 32px;
+  background: linear-gradient(#e7f8ec, #dff3e6);
+  font-family: "Montserrat", sans-serif;
+}
+
+.count,
+.search-icon {
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  padding: 0 0 16px 0;
+}
+
+.search-bar input[matInput] {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.search-bar button {
+  background: transparent;
+}
+
+.posts-card {
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #2fa66a;
+  font-size: 18px;
+}
+
+.post-title {
+  font-size: 22px;
+  color: #2fa66a;
+  margin: 0 0 12px 0;
+}
+
+.post-body {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 16px 0;
+}
+
+.post-image {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+.likes {
+  background: #f3f4f6;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #2fa66a;
+  font-weight: 700;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.submit-btn {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.cancel-btn {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: #333;
+  border: 1px dashed #89c997;
+  border-radius: 8px;
+}
+
+@media (max-width: 480px) {
+  .posts-wrapper,
+  input,
+  textarea {
+    padding: 16px;
+  }
+  .posts-card {
+    padding: 16px;
+  }
+}
+
+html,
+body,
+app-root {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: linear-gradient(#e7f8ec, #dff3e6) !important;
+  color: #1f2937 !important;
+}
+
+:root,
+.app-container,
+.main,
+.content,
+.mat-sidenav-content {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+.dark-theme,
+.mat-dark,
+body.dark,
+html.dark,
+.theme-dark {
+  background: linear-gradient(#e7f8ec, #dff3e6) !important;
+  color: #1f2937 !important;
+}
+
+.mat-sidenav-container,
+.mat-drawer-container,
+.mat-card,
+.mat-toolbar,
+.mat-sidenav {
+  background-color: transparent !important;
+}
+
+footer,
+.app-footer,
+.site-footer {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+body {
+  background-image: none !important;
+}

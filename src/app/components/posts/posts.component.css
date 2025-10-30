@@ -1,0 +1,302 @@
+.posts-wrapper,
+input,
+textarea {
+  padding: 32px;
+  background: linear-gradient(#e7f8ec, #dff3e6);
+  font-family: "Montserrat", sans-serif;
+}
+
+input,
+textarea,
+.new-post-form input,
+.new-post-form textarea,
+.edit-form input,
+.edit-form textarea,
+.comment-form input,
+.reply-form input,
+.comment-form textarea,
+.reply-form textarea {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.new-post-toggle {
+  margin-bottom: 32px;
+}
+
+.expand-btn {
+  background-color: #2fa66a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expand-btn-open {
+  margin-bottom: 16px;
+}
+
+.expand-btn:hover {
+  background-color: #24925c;
+}
+
+.new-post-form {
+  animation: fadeIn 0.3s ease-in-out;
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.new-post-form h3 {
+  font-size: 24px;
+  color: #2fa66a;
+  margin-bottom: 12px;
+}
+
+.invalid {
+  border: 2px solid #e57373;
+  background: #fff0f0;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #2fa66a;
+  font-size: 20px;
+}
+
+.posts-card {
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 1 !important;
+  position: relative;
+}
+
+.posts-card * {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.post-title {
+  font-size: 28px;
+  color: #2fa66a;
+  margin-bottom: 12px;
+}
+
+.post-body {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.toggle-btn {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.comments {
+  margin-top: 16px;
+}
+
+.comment {
+  background: #f4fbf7;
+  border-left: 4px solid #2fa66a;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 4px;
+  opacity: 1;
+  color: #333;
+}
+
+.comment-form,
+.reply-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form input,
+.reply-form input,
+.comment-form textarea,
+.reply-form textarea {
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #24925c;
+}
+
+.comment-form,
+.reply-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.comment-actions button {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reply-comment {
+  background: #eaf7f0;
+  border-left: 4px solid #89c997;
+  padding: 12px;
+  margin-left: 6px;
+  margin-top: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.edit-form {
+  margin-top: 16px;
+}
+
+.cancel-btn {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: #333;
+}
+
+.posts-wrapper .pagination button {
+  background: transparent;
+  color: #2fa66a;
+  border: 1px solid rgba(47, 166, 106, 0.12);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.12s ease, transform 0.08s ease;
+  min-height: 38px;
+}
+
+.posts-wrapper .pagination button:hover {
+  background: rgba(47, 166, 106, 0.08);
+  color: #fff;
+  background-color: #2fa66a;
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.posts-wrapper .pagination button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: transparent;
+  border-color: rgba(47, 166, 106, 0.06);
+}
+
+.posts-wrapper .pagination button:focus {
+  outline: 3px solid rgba(47, 166, 106, 0.12);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .posts-wrapper .pagination {
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .posts-wrapper .pagination button {
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 375px) {
+  .new-post-form textarea {
+    min-height: 80px;
+    max-height: 160px;
+    font-size: 15px;
+  }
+  .new-post-form input {
+    font-size: 15px;
+  }
+}

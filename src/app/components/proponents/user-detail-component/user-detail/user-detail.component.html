@@ -1,0 +1,66 @@
+<div class="user-detail-wrapper">
+  <div *ngIf="loading" class="loading">Loading…</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="user-card" *ngIf="user">
+    <h2>{{ user.name }}</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Gender:</strong> {{ user.gender }}</p>
+    <p><strong>Status:</strong> {{ user.status }}</p>
+  </div>
+
+  <div *ngIf="!loading && !user && !error" class="no-user">
+    Utente non trovato.
+  </div>
+
+  <div class="post-section">
+    <h3>Posts</h3>
+
+    <div class="post-card" *ngFor="let post of posts">
+      <h4>{{ post.title }}</h4>
+      <p>{{ post.body }}</p>
+
+      <div class="comments">
+        <h5>Comments</h5>
+
+        <div class="comment" *ngFor="let comment of post.comments || []">
+          <p>
+            <strong>{{ comment.name }}</strong
+            >: {{ comment.body }}
+          </p>
+        </div>
+
+        <form
+          *ngIf="commentForms[post.id]"
+          [formGroup]="commentForms[post.id]"
+          (ngSubmit)="submitComment(post.id)"
+          class="comment-form"
+        >
+          <input
+            formControlName="name"
+            placeholder="Your name"
+            [class.invalid]="
+              commentForms[post.id].get('name')?.invalid &&
+              commentForms[post.id].get('name')?.touched
+            "
+          />
+          <textarea
+            formControlName="body"
+            placeholder="Write a comment..."
+            [class.invalid]="
+              commentForms[post.id].get('body')?.invalid &&
+              commentForms[post.id].get('body')?.touched
+            "
+          ></textarea>
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="commentForms[post.id].invalid"
+          >
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

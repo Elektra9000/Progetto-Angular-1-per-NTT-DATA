@@ -1,0 +1,49 @@
+<div class="proponents-wrapper">
+  <h2>Users</h2>
+
+  <div class="controls">
+    <input
+      #searchInput
+      type="text"
+      placeholder="Search"
+      (input)="onSearchTerm(searchInput.value)"
+    />
+  </div>
+
+  <div class="card-container">
+    <div class="user-card" *ngFor="let user of paginatedUsers">
+      <h4>
+        <a [routerLink]="['/proponents/user', user.id]" class="name-link">{{ user.name }}</a>
+      </h4>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Genre:</strong> {{ user.gender }}</p>
+      <p><strong>Status:</strong> {{ user.status }}</p>
+      <button (click)="removeUser(user.id)">Delete</button>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button (click)="goToPage(page - 1)" [disabled]="page === 1">← Prev</button>
+    <span>Page {{ page }}</span>
+    <button
+      (click)="goToPage(page + 1)"
+      [disabled]="page * pageSize >= filtered.length"
+    >
+      Next →
+    </button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="addUser()" class="add-user-form">
+    <h3>Add User</h3>
+
+    <input type="text" formControlName="name" placeholder="Name" />
+    <input type="email" formControlName="email" placeholder="Email" />
+
+    <select formControlName="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+
+    <button type="submit" [disabled]="form.invalid">Send</button>
+  </form>
+</div>

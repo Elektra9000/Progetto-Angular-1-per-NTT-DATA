@@ -1,0 +1,23 @@
+<div class="login-wrapper">
+  <section class="login-card">
+    <h1 class="logo">GlowUp</h1>
+    <p class="tagline">the future is now!</p>
+
+    <label class="label" for="token">login</label>
+    <input
+      id="token"
+      [formControl]="tokenControl"
+      type="text"
+      placeholder="Insert token"
+      class="token-input"
+      aria-describedby="tokenHelp"
+    />
+    <div id="tokenHelp" class="field-help" *ngIf="tokenControl.invalid && tokenControl.touched">
+      <span *ngIf="tokenControl.hasError('required')">Token is required.</span>
+    </div>
+
+    <button (click)="enter()" [disabled]="tokenControl.invalid" class="enter-btn">
+      enter
+    </button>
+  </section>
+</div>

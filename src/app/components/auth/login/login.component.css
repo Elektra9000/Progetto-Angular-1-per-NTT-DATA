@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=League+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.login-wrapper { display:flex; align-items:center; justify-content:center; height:100vh; background:linear-gradient(#e7f8ec,#dff3e6); }
+.login-card { border:2px solid #89c997; padding:32px; border-radius:8px; text-align:center; background:white; }
+.label { display:block; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
+.token-input { width:100%; padding:8px; margin-bottom:12px; border:1px solid #cfe9d9; border-radius:4px; }
+.enter-btn { background:#2fa66a; color:white; padding:8px 16px; border:none; border-radius:4px; cursor:pointer; }
+.enter-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+.logo {
+  font-family: 'Birthstone', cursive;
+  font-size: 72px;
+  color: #2fa66a;
+  margin: 0;
+}
+
+.tagline {
+  font-family: 'Birthstone', cursive;
+  font-size: 36px;
+  color: #1e78b6;
+  font-style: italic;
+  margin-top: 0px;
+  margin-bottom: 12px;
+}
+
+.label, .enter-btn, .token-input {
+  font-family: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,190 @@
+.proponents-wrapper {
+  padding: 32px;
+  background: linear-gradient(#e7f8ec, #dff3e6);
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.controls input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  font-family: "Montserrat", sans-serif;
+  flex: 1;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.user-card {
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-2px);
+  opacity: 0.98;
+}
+
+.user-card h4 {
+  font-size: 20px;
+  color: #2fa66a;
+  margin-bottom: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.user-card p {
+  font-size: 16px;
+  margin: 4px 0;
+  color: #333;
+}
+
+.user-card button {
+  margin-top: 12px;
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.user-card button:hover {
+  background: #24925c;
+}
+
+.add-user-form {
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-user-form h3 {
+  font-size: 24px;
+  color: #2fa66a;
+  margin-bottom: 12px;
+}
+
+.add-user-form input,
+.add-user-form select {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+}
+
+.add-user-form button {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-user-form button:hover {
+  background: #24925c;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.pagination button {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #24925c;
+}
+
+.pagination button:disabled {
+  background: #b5d9c4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2fa66a;
+  font-family: "Montserrat", sans-serif;
+}
+
+.name-link {
+  color: #2fa66a;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  display: inline-block;
+  margin: 0;
+  padding: 0px 6px 0 0;
+  border-radius: 6px;
+  transition: background-color 0.18s ease, color 0.12s ease,
+    transform 0.12s ease;
+}
+
+.name-link:hover {
+  background: rgba(47, 166, 106, 0.06);
+  color: #24925c;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.name-link:focus {
+  outline: 3px solid rgba(47, 166, 106, 0.14);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+.name-link:visited {
+  color: #2fa66a;
+}
+
+.name-link[aria-current="true"],
+.name-link.active {
+  background: rgba(47, 166, 106, 0.1);
+  color: #1f5b3f;
+}

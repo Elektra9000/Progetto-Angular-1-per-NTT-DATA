@@ -1,0 +1,95 @@
+<div class="posts-wrapper search-page">
+  <div class="search-bar">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input matInput [formControl]="query" placeholder="Search title or text" />
+    <button mat-icon-button *ngIf="query.value" (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div
+    class="meta"
+    *ngIf="(query.value || '').toString().trim().length > 0 || loading || error"
+  >
+    <div *ngIf="loading" class="loading">
+      <mat-progress-spinner
+        diameter="20"
+        mode="indeterminate"
+      ></mat-progress-spinner>
+      <span>Loading...</span>
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="!loading && !error" class="count">
+      {{ (filtered$ | async)?.length || 0 }} results
+    </div>
+  </div>
+
+  <div class="results" *ngIf="(query.value || '').toString().trim().length > 0">
+    <ng-container *ngIf="filtered$ | async as list">
+      <div *ngFor="let post of list" class="posts-card">
+        <button
+          class="edit-icon"
+          *ngIf="!editing.get(post.id)"
+          (click)="startEdit(post)"
+        >
+          ✎
+        </button>
+
+        <div *ngIf="editing.get(post.id); else viewMode">
+          <form
+            [formGroup]="editForms.get(post.id)!"
+            class="edit-form"
+            (ngSubmit)="saveEdit(post)"
+          >
+            <input formControlName="title" placeholder="Titolo" />
+            <textarea formControlName="body" placeholder="Testo"></textarea>
+
+            <div class="form-actions">
+              <button
+                class="submit-btn"
+                type="button"
+                (click)="saveEdit(post)"
+                [disabled]="editForms.get(post.id)?.invalid"
+              >
+                Save
+              </button>
+              <button
+                class="cancel-btn"
+                type="button"
+                (click)="cancelEdit(post.id)"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <ng-template #viewMode>
+          <h2 class="post-title" [innerHTML]="highlight(post.title)"></h2>
+          <p class="post-body" [innerHTML]="highlight(post.body)"></p>
+
+          <img
+            *ngIf="post.image_url"
+            [src]="post.image_url"
+            alt="post image"
+            class="post-image"
+          />
+
+          <div class="post-actions">
+            <span class="likes">Likes: {{ post.likes || 0 }}</span>
+          </div>
+
+          <div class="comments" *ngIf="post.comments?.length">
+            <div *ngFor="let c of post.comments" class="comment">
+              <div class="reply-comment">{{ c.body }}</div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+
+      <div *ngIf="!list.length && !loading && !error" class="empty">
+        No posts found
+      </div>
+    </ng-container>
+  </div>
+</div>

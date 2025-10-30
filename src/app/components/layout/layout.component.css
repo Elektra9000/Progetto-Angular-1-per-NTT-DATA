@@ -1,0 +1,121 @@
+.label {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(to right, #e7f8ec, #dff3e6);
+  border-bottom: 2px solid #2fa66a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-right {
+  padding-right: 24px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar button {
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 4px;
+  padding: 8px 12px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar button:hover {
+  background-color: #258d59;
+  color: white;
+}
+
+.nav-right button[mat-icon-button] {
+  color: black;
+  transition: transform 0.3s ease;
+  min-width: 48px;
+}
+
+.nav-right button[mat-icon-button]:hover {
+  transform: scale(1.2);
+}
+
+.menu-button {
+  font-size: 28px;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline-flex;
+  }
+
+  .nav-left {
+    display: none;
+  }
+}
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(to right, #e7f8ec, #dff3e6);
+  border-right: 2px solid #2fa66a;
+}
+
+.mobile-menu button {
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 4px;
+  padding: 8px 12px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: "Montserrat", sans-serif;
+}
+
+.mobile-menu button:hover {
+  background-color: #258d59;
+  color: white;
+}
+
+.mobile-menu button[mat-icon-button] {
+  font-size: 28px;
+  align-self: flex-end;
+  color: black;
+  display: block;
+  width: 100%;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}

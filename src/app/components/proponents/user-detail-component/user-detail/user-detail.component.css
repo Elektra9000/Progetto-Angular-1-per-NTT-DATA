@@ -1,0 +1,123 @@
+.user-detail-wrapper {
+  padding: 32px;
+  background: linear-gradient(#e7f8ec, #dff3e6);
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+}
+
+.user-card {
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-card h2 {
+  font-size: 24px;
+  color: #2fa66a;
+  margin-bottom: 12px;
+}
+
+.user-card p {
+  font-size: 16px;
+  margin: 4px 0;
+}
+
+.post-section h3 {
+  font-size: 22px;
+  color: #2fa66a;
+  margin-bottom: 16px;
+}
+
+.post-card {
+  background: white;
+  border: 2px solid #89c997;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-card h4 {
+  font-size: 20px;
+  color: #2fa66a;
+  margin-bottom: 8px;
+}
+
+.post-card p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.comments h5 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #2fa66a;
+}
+
+.comment {
+  background: #f4fbf7;
+  border-left: 4px solid #2fa66a;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.comment-form {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form input,
+.comment-form textarea {
+  margin-bottom: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.submit-btn {
+  background: #2fa66a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #24925c;
+}
+
+.invalid {
+  border: 2px solid #e57373;
+  background: #fff0f0;
+}
+
+.loading {
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+.error {
+  margin-bottom: 12px;
+  color: #b91c1c;
+}
+.no-user {
+  margin-bottom: 12px;
+  color: #6b7280;
+}

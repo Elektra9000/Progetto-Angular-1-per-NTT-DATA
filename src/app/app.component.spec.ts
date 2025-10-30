@@ -20,10 +20,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('progetto-angular-1');
   });
 
-  it('should render title', () => {
+  it('should render router-outlet or nav element', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, progetto-angular-1');
+    expect(
+      compiled.querySelector('router-outlet') || compiled.querySelector('nav')
+    ).toBeTruthy();
   });
 });
