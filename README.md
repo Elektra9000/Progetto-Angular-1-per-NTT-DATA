@@ -46,7 +46,7 @@ Install required packages:
 npm install
 ```
 
-- Run the development server:
+Run the development server:
 ```sh
 ng serve
 ```
