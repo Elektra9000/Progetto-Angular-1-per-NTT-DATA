@@ -1,7 +1,7 @@
 export interface User {
   id: number;
   name: string;
-  email: string;
+  email?: string;
   gender: 'male' | 'female';
   status: 'active' | 'inactive';
 }
@@ -14,6 +14,7 @@ export interface Post {
   likes?: number;
   image_url?: string;
   comments?: PostComment[];
+  user_id?: number;
 }
 
 export interface PostComment {
@@ -24,6 +25,12 @@ export interface PostComment {
   email?: string;
   body?: string;
   likes?: number;
+}
+
+export interface CreatePostPayload {
+  title: string;
+  body: string;
+  user_id: number;
 }
 
 export interface Todo {

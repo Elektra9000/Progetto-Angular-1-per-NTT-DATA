@@ -10,21 +10,16 @@
 
     <div class="new-post-form" *ngIf="showNewPostForm">
       <h3>Insert a new post</h3>
-      <form [formGroup]="newPostForm" (ngSubmit)="submitNewPost()">
-        <input
-          formControlName="title"
-          placeholder="Post title"
-          [class.invalid]="
-            newPostForm.get('title')?.invalid &&
-            newPostForm.get('title')?.touched
-          "
-        />
+      <form
+        [formGroup]="newPostForm"
+        (ngSubmit)="submitNewPost()"
+        class="comment-form"
+      >
+        <input formControlName="title" placeholder="Post title" class="" />
         <textarea
           formControlName="body"
           placeholder="Post content"
-          [class.invalid]="
-            newPostForm.get('body')?.invalid && newPostForm.get('body')?.touched
-          "
+          class="new-post-textarea"
         ></textarea>
         <button
           type="submit"
@@ -35,137 +30,160 @@
         </button>
       </form>
     </div>
-  </div>
 
-  <div class="pagination" *ngIf="posts.length > pageSize">
-    <button (click)="goToPage(page - 1)" [disabled]="page === 1">← Prev</button>
-    <span>Page {{ page }} / {{ totalPages }}</span>
-    <button
-      (click)="goToPage(page + 1)"
-      [disabled]="page * pageSize >= posts.length"
-    >
-      Next →
-    </button>
-  </div>
-
-  <div
-    class="posts-card"
-    *ngFor="let post of displayedPosts; trackBy: trackByPostId"
-  >
-    <button class="edit-icon" (click)="startEdit(post)">
-      <mat-icon>edit</mat-icon>
-    </button>
-
-    <h2 class="post-title">{{ post.title }}</h2>
-    <p class="post-body">{{ post.body }}</p>
-
-    <div class="post-actions">
-      <button class="action-btn" (click)="toggleComments(post.id)">
-        {{ expandedPostId === post.id ? "Hide Comments" : "Show Comments" }}
+    <div class="pagination" *ngIf="posts.length > pageSize">
+      <button (click)="goToPage(page - 1)" [disabled]="page === 1">
+        ← Prev
       </button>
-      <button class="action-btn" (click)="likePost(post.id)">
-        ❤️ Like Post {{ post.likes || 0 }}
-      </button>
-      <button class="action-btn" (click)="prepareNewComment(post.id)">
-        Add Comment
-      </button>
-    </div>
-
-    <form
-      *ngIf="activeCommentPostId === post.id && commentForms[post.id]"
-      [formGroup]="commentForms[post.id]"
-      (ngSubmit)="submitComment(post.id)"
-      class="comment-form"
-    >
-      <input formControlName="name" placeholder="Your name" />
-      <textarea
-        formControlName="body"
-        placeholder="Write a comment..."
-      ></textarea>
+      <span>Page {{ page }} / {{ totalPages }}</span>
       <button
-        type="submit"
-        class="submit-btn"
-        [disabled]="commentForms[post.id].invalid"
+        (click)="goToPage(page + 1)"
+        [disabled]="page * pageSize >= posts.length"
       >
-        Send
+        Next →
       </button>
-    </form>
-
-    <div class="comments" *ngIf="expandedPostId === post.id">
-      <p *ngIf="loadingComments && !comments[post.id]">Loading comments...</p>
-      <p *ngIf="comments[post.id]?.length === 0">No comments yet.</p>
-
-      <ng-container *ngFor="let comment of comments[post.id] || []">
-        <div class="comment" *ngIf="!comment.parent_id">
-          <strong>{{ comment.name }}</strong>
-          <p>{{ comment.body }}</p>
-
-          <div class="comment-actions">
-            <button (click)="likeComment(post.id, comment)">
-              ❤️ {{ comment.likes || 0 }}
-            </button>
-            <button (click)="replyToComment(post.id, comment)">↩️ Reply</button>
-          </div>
-
-          <div *ngIf="replyingTo === comment.id">
-            <form
-              *ngIf="replyForms[post.id]?.[comment.id]"
-              [formGroup]="replyForms[post.id][comment.id]"
-              (ngSubmit)="submitReply(post.id, comment.id)"
-              class="reply-form"
-            >
-              <input formControlName="name" placeholder="Your name" />
-              <textarea
-                formControlName="body"
-                placeholder="Write a reply..."
-              ></textarea>
-              <button
-                class="submit-btn"
-                type="submit"
-                [disabled]="replyForms[post.id][comment.id].invalid"
-              >
-                Send Reply
-              </button>
-            </form>
-          </div>
-
-          <ng-container *ngFor="let reply of comments[post.id] || []">
-            <div class="reply-comment" *ngIf="reply.parent_id === comment.id">
-              <strong>{{ reply.name }}</strong>
-              <p>{{ reply.body }}</p>
-              <div class="comment-actions">
-                <button (click)="likeComment(post.id, reply)">
-                  ❤️ {{ reply.likes || 0 }}
-                </button>
-              </div>
-            </div>
-          </ng-container>
-        </div>
-      </ng-container>
     </div>
 
-    <div *ngIf="editingPostId === post.id" class="edit-form">
-      <form [formGroup]="editForm" (ngSubmit)="submitEdit(post.id)">
-        <input formControlName="title" placeholder="Edit title" />
-        <textarea formControlName="body" placeholder="Edit content"></textarea>
-        <button type="submit" class="submit-btn" [disabled]="editForm.invalid">
-          Save
+    <div
+      class="posts-card"
+      *ngFor="let post of displayedPosts; trackBy: trackByPostId"
+    >
+      <button class="edit-icon" (click)="startEdit(post)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <h2 class="post-title">{{ post.title }}</h2>
+      <p class="post-body">{{ post.body }}</p>
+
+      <div class="post-actions">
+        <button class="action-btn" (click)="toggleComments(post.id)">
+          {{ expandedPostId === post.id ? "Hide Comments" : "Show Comments" }}
         </button>
-        <button type="button" class="cancel-btn" (click)="editingPostId = null">
-          Cancel
+        <button class="action-btn" (click)="likePost(post.id)">
+          ❤️ Like Post {{ post.likes || 0 }}
+        </button>
+        <button class="action-btn" (click)="prepareNewComment(post.id)">
+          Add Comment
+        </button>
+      </div>
+
+      <form
+        *ngIf="activeCommentPostId === post.id && commentForms[post.id]"
+        [formGroup]="commentForms[post.id]"
+        (ngSubmit)="submitComment(post.id)"
+        class="comment-form"
+      >
+        <input formControlName="name" placeholder="Your name" />
+        <textarea
+          formControlName="body"
+          placeholder="Write a comment..."
+        ></textarea>
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="commentForms[post.id].invalid"
+        >
+          Send
         </button>
       </form>
-    </div>
-  </div>
 
-  <div class="pagination" *ngIf="posts.length > pageSize">
-    <button (click)="goToPage(page - 1)" [disabled]="page === 1">← Prev</button>
-    <span>Page {{ page }} / {{ totalPages }}</span>
-    <button
-      (click)="goToPage(page + 1)"
-      [disabled]="page * pageSize >= posts.length"
-    >
-      Next →
-    </button>
+      <div class="comments" *ngIf="expandedPostId === post.id">
+        <p *ngIf="loadingComments && !comments[post.id]">Loading comments...</p>
+        <p *ngIf="comments[post.id]?.length === 0">No comments yet.</p>
+
+        <ng-container *ngFor="let comment of comments[post.id] || []">
+          <div class="comment" *ngIf="!comment.parent_id">
+            <strong>{{ comment.name }}</strong>
+            <p>{{ comment.body }}</p>
+
+            <div class="comment-actions">
+              <button (click)="likeComment(post.id, comment)">
+                ❤️ {{ comment.likes || 0 }}
+              </button>
+              <button (click)="replyToComment(post.id, comment)">
+                ↩️ Reply
+              </button>
+            </div>
+
+            <div *ngIf="replyingTo === comment.id">
+              <form
+                *ngIf="replyForms[post.id]?.[comment.id]"
+                [formGroup]="replyForms[post.id][comment.id]"
+                (ngSubmit)="submitReply(post.id, comment.id)"
+                class="reply-form"
+              >
+                <input formControlName="name" placeholder="Your name" />
+                <textarea
+                  formControlName="body"
+                  placeholder="Write a reply..."
+                ></textarea>
+                <button
+                  class="submit-btn"
+                  type="submit"
+                  [disabled]="replyForms[post.id][comment.id].invalid"
+                >
+                  Send Reply
+                </button>
+              </form>
+            </div>
+
+            <ng-container *ngFor="let reply of comments[post.id] || []">
+              <div class="reply-comment" *ngIf="reply.parent_id === comment.id">
+                <strong>{{ reply.name }}</strong>
+                <p>{{ reply.body }}</p>
+                <div class="comment-actions">
+                  <button (click)="likeComment(post.id, reply)">
+                    ❤️ {{ reply.likes || 0 }}
+                  </button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="editingPostId === post.id" class="edit-form">
+        <form
+          [formGroup]="editForm"
+          (ngSubmit)="submitEdit(post.id)"
+          class="comment-form"
+        >
+          <input formControlName="title" placeholder="Edit title" />
+          <textarea
+            formControlName="body"
+            placeholder="Edit content"
+          ></textarea>
+          <div class="comment-actions">
+            <button
+              type="submit"
+              class="submit-btn"
+              [disabled]="editForm.invalid"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="cancel-btn"
+              (click)="editingPostId = null"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="pagination" *ngIf="posts.length > pageSize">
+      <button (click)="goToPage(page - 1)" [disabled]="page === 1">
+        ← Prev
+      </button>
+      <span>Page {{ page }} / {{ totalPages }}</span>
+      <button
+        (click)="goToPage(page + 1)"
+        [disabled]="page * pageSize >= posts.length"
+      >
+        Next →
+      </button>
+    </div>
   </div>
 </div>

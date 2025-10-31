@@ -184,57 +184,80 @@ export class PostsComponent implements OnInit {
     if (this.newPostForm.invalid || this.postingPost) return;
     const token = sessionStorage.getItem('gorest_token');
     if (!token) return;
-    const tempId = Date.now();
-    const localPost: Post = {
-      id: tempId,
-      title: this.newPostForm.value.title!,
-      body: this.newPostForm.value.body!,
-      likes: 0,
-    };
-
-    this.posts = [localPost, ...this.posts];
-    PostsComponent.postsCache = this.posts;
-    this.applyPagination();
-    this.cd.markForCheck();
 
     this.postingPost = true;
 
-    this.api
-      .createPost({ title: localPost.title, body: localPost.body })
-      .pipe(finalize(() => (this.postingPost = false)))
-      .subscribe({
-        next: (created) => {
-          const idx = this.posts.findIndex((p) => p.id === tempId);
-          if (idx !== -1) {
-            this.posts = [
-              ...this.posts.slice(0, idx),
-              created,
-              ...this.posts.slice(idx + 1),
-            ];
-            PostsComponent.postsCache = this.posts;
-            this.applyPagination();
-            this.cd.markForCheck();
-          }
-          this.commentForms[created.id] = new FormGroup({
-            name: new FormControl('', Validators.required),
-            body: new FormControl('', Validators.required),
+    this.api.getCurrentUser().pipe(finalize(() => {
+      this.postingPost = false;
+    })).subscribe({
+      next: (users) => {
+        const userId = Array.isArray(users) && users.length > 0 ? users[0].id : null;
+        if (!userId) {
+          this.snack.open('Invalid token: no user found', 'Close', { duration: 4000 });
+          this.postingPost = false;
+          return;
+        }
+
+        const tempId = Date.now();
+        const localPost: Post = {
+          id: tempId,
+          title: this.newPostForm.value.title!,
+          body: this.newPostForm.value.body!,
+          likes: 0,
+        };
+
+        this.posts = [localPost, ...this.posts];
+        PostsComponent.postsCache = this.posts;
+        this.applyPagination();
+        this.cd.markForCheck();
+
+        this.api
+          .createPost({
+            title: localPost.title,
+            body: localPost.body,
+            user_id: userId,
+          })
+          .pipe(finalize(() => (this.postingPost = false)))
+          .subscribe({
+            next: (created) => {
+              const idx = this.posts.findIndex((p) => p.id === tempId);
+              if (idx !== -1) {
+                this.posts = [
+                  ...this.posts.slice(0, idx),
+                  created,
+                  ...this.posts.slice(idx + 1),
+                ];
+                PostsComponent.postsCache = this.posts;
+                this.applyPagination();
+                this.cd.markForCheck();
+              }
+              this.commentForms[created.id] = new FormGroup({
+                name: new FormControl('', Validators.required),
+                body: new FormControl('', Validators.required),
+              });
+              this.replyForms[created.id] = {};
+              this.newPostForm.reset();
+              this.showNewPostForm = false;
+              this.snack.open('Post published', 'Close', { duration: 2500 });
+            },
+            error: (err) => {
+              this.posts = this.posts.filter((p) => p.id !== tempId);
+              PostsComponent.postsCache = this.posts;
+              this.applyPagination();
+              this.cd.markForCheck();
+              this.snack.open('Failed to publish post', 'Close', {
+                duration: 4000,
+              });
+              console.error(err);
+            },
           });
-          this.replyForms[created.id] = {};
-          this.newPostForm.reset();
-          this.showNewPostForm = false;
-          this.snack.open('Post published', 'Close', { duration: 2500 });
-        },
-        error: (err) => {
-          this.posts = this.posts.filter((p) => p.id !== tempId);
-          PostsComponent.postsCache = this.posts;
-          this.applyPagination();
-          this.cd.markForCheck();
-          this.snack.open('Failed to publish post', 'Close', {
-            duration: 4000,
-          });
-          console.error(err);
-        },
-      });
+      },
+      error: (err) => {
+        this.snack.open('Failed to retrieve user info', 'Close', { duration: 4000 });
+        console.error(err);
+        this.postingPost = false;
+      },
+    });
   }
 
   prepareNewComment(postId: number) {

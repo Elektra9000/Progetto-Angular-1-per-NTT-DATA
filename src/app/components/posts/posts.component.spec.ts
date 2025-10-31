@@ -31,7 +31,20 @@ describe('PostsComponent additional tests', () => {
       'createComment',
       'createReply',
       'likePost',
+      'getCurrentUser',
     ]);
+
+    apiSpy.getCurrentUser.and.returnValue(
+      of([
+        {
+          id: 1,
+          name: 'Test User',
+          email: 't@test',
+          gender: 'male',
+          status: 'active',
+        },
+      ])
+    );
     cdSpy = jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']);
     snackSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
@@ -81,7 +94,9 @@ describe('PostsComponent additional tests', () => {
     expect(inside).toBeDefined();
     expect(inside?.likes).toBe(2);
 
-    const cached = (PostsComponent as any).postsCache?.find((x: any) => x.id === 60);
+    const cached = (PostsComponent as any).postsCache?.find(
+      (x: any) => x.id === 60
+    );
     expect(cached).toBeDefined();
     expect(cached?.likes).toBe(2);
   }));
@@ -89,7 +104,8 @@ describe('PostsComponent additional tests', () => {
   it('goToPage respects bounds and changes displayedPosts', fakeAsync(() => {
     (PostsComponent as any).postsCache = null;
     const many: Post[] = [];
-    for (let i = 1; i <= 20; i++) many.push({ id: i, title: `t${i}`, body: 'b', likes: 0 });
+    for (let i = 1; i <= 20; i++)
+      many.push({ id: i, title: `t${i}`, body: 'b', likes: 0 });
     apiSpy.getPosts.and.returnValue(of(many));
 
     fixture = TestBed.createComponent(PostsComponent);
@@ -115,7 +131,9 @@ describe('PostsComponent additional tests', () => {
   }));
 
   it('loadPosts uses cache when present', fakeAsync(() => {
-    (PostsComponent as any).postsCache = [{ id: 5, title: 'cached', body: 'c', likes: 0 }];
+    (PostsComponent as any).postsCache = [
+      { id: 5, title: 'cached', body: 'c', likes: 0 },
+    ];
     sessionStorage.setItem('gorest_token', 't');
     fixture = TestBed.createComponent(PostsComponent);
     component = fixture.componentInstance;
@@ -175,7 +193,9 @@ describe('PostsComponent additional tests', () => {
   it('submitNewPost does nothing if token is missing', fakeAsync(() => {
     sessionStorage.removeItem('gorest_token');
     apiSpy.getPosts.and.returnValue(of([]));
-    apiSpy.createPost.and.returnValue(of({ id: 0, title: '', body: '', likes: 0 }));
+    apiSpy.createPost.and.returnValue(
+      of({ id: 0, title: '', body: '', likes: 0 })
+    );
 
     fixture = TestBed.createComponent(PostsComponent);
     component = fixture.componentInstance;
@@ -193,7 +213,9 @@ describe('PostsComponent additional tests', () => {
     (PostsComponent as any).postsCache = null;
     const p: Post = { id: 10, title: 't', body: 'b', likes: 0 };
     apiSpy.getPosts.and.returnValue(of([p]));
-    const comments: PostComment[] = [{ id: 1, post_id: 10, name: 'a', email: 'e', body: 'c', likes: 0 }];
+    const comments: PostComment[] = [
+      { id: 1, post_id: 10, name: 'a', email: 'e', body: 'c', likes: 0 },
+    ];
     apiSpy.getCommentsByPost.and.returnValue(of(comments));
 
     fixture = TestBed.createComponent(PostsComponent);
@@ -209,7 +231,9 @@ describe('PostsComponent additional tests', () => {
 
   it('toggleComments hides comments when already loaded', fakeAsync(() => {
     const p: Post = { id: 99, title: 't', body: 'b', likes: 0 };
-    const comments: PostComment[] = [{ id: 1, post_id: 99, name: 'a', email: 'e', body: 'c', likes: 0 }];
+    const comments: PostComment[] = [
+      { id: 1, post_id: 99, name: 'a', email: 'e', body: 'c', likes: 0 },
+    ];
     apiSpy.getPosts.and.returnValue(of([p]));
     apiSpy.getCommentsByPost.and.returnValue(of(comments));
 
@@ -230,7 +254,14 @@ describe('PostsComponent additional tests', () => {
     (PostsComponent as any).postsCache = null;
     const p: Post = { id: 20, title: 't', body: 'b', likes: 0 };
     apiSpy.getPosts.and.returnValue(of([p]));
-    const created: PostComment = { id: 9, post_id: 20, name: 'n', email: 'e', body: 'body', likes: 0 };
+    const created: PostComment = {
+      id: 9,
+      post_id: 20,
+      name: 'n',
+      email: 'e',
+      body: 'body',
+      likes: 0,
+    };
     apiSpy.createComment = jasmine.createSpy().and.returnValue(of(created));
 
     fixture = TestBed.createComponent(PostsComponent);
@@ -309,7 +340,9 @@ describe('PostsComponent additional tests', () => {
     (PostsComponent as any).postsCache = null;
     const p: Post = { id: 50, title: 't', body: 'b', likes: 0 };
     apiSpy.getPosts.and.returnValue(of([p]));
-    apiSpy.getCommentsByPost.and.returnValue(throwError(() => new Error('fail')));
+    apiSpy.getCommentsByPost.and.returnValue(
+      throwError(() => new Error('fail'))
+    );
 
     fixture = TestBed.createComponent(PostsComponent);
     component = fixture.componentInstance;
@@ -322,7 +355,6 @@ describe('PostsComponent additional tests', () => {
     expect(component.loadingComments).toBeFalse();
     expect(component.comments[50]?.length || 0).toBe(0);
   }));
-
 
   it('submitNewPost handles server response without id gracefully', fakeAsync(() => {
     (PostsComponent as any).postsCache = null;
@@ -342,7 +374,9 @@ describe('PostsComponent additional tests', () => {
 
     expect(component.posts).toBeDefined();
     expect(Array.isArray(component.posts)).toBeTrue();
-    const created = component.posts.find((p) => p.title === 'New' || p.body === 'B');
+    const created = component.posts.find(
+      (p) => p.title === 'New' || p.body === 'B'
+    );
     expect(created).toBeDefined();
   }));
 
@@ -362,7 +396,10 @@ describe('PostsComponent additional tests', () => {
     expect(apiSpy.createComment).not.toHaveBeenCalled();
 
     component.prepareNewComment(200);
-    component.commentForms[200] = { invalid: true, setErrors: () => void 0 } as any;
+    component.commentForms[200] = {
+      invalid: true,
+      setErrors: () => void 0,
+    } as any;
     component.submitComment(200);
     tick();
     expect(apiSpy.createComment).not.toHaveBeenCalled();
@@ -384,14 +421,20 @@ describe('PostsComponent additional tests', () => {
     component.replyForms[210][2] = {
       invalid: false,
       value: { name: 'n', body: 'x' },
-      reset: () => { return; },
+      reset: () => {
+        return;
+      },
     } as any;
 
     component.submitReply(210, 2);
     tick();
 
-    expect(component.comments[210].some((c: any) => c.name === 'n')).toBeFalse();
-    expect(component.comments[210].some((c: any) => c.name === 'existing')).toBeTrue();
+    expect(
+      component.comments[210].some((c: any) => c.name === 'n')
+    ).toBeFalse();
+    expect(
+      component.comments[210].some((c: any) => c.name === 'existing')
+    ).toBeTrue();
   }));
 
   it('toggleComments concurrent calls do not leave loading flag true', fakeAsync(() => {
@@ -400,7 +443,10 @@ describe('PostsComponent additional tests', () => {
     apiSpy.getPosts.and.returnValue(of([p]));
     let resolve: any;
     const delayed$ = new Observable<PostComment[]>((sub) => {
-      resolve = () => sub.next([{ id: 1, post_id: 220, name: 'a', email: 'e', body: 'c', likes: 0 }]);
+      resolve = () =>
+        sub.next([
+          { id: 1, post_id: 220, name: 'a', email: 'e', body: 'c', likes: 0 },
+        ]);
     });
     apiSpy.getCommentsByPost.and.returnValue(delayed$ as any);
 
@@ -437,7 +483,9 @@ describe('PostsComponent additional tests', () => {
     component.submitNewPost();
     tick();
 
-    const found = component.posts.some((pp: any) => pp.title === 'Optimistic' || pp.body === 'X');
+    const found = component.posts.some(
+      (pp: any) => pp.title === 'Optimistic' || pp.body === 'X'
+    );
     expect(found).toBeFalse();
   }));
 });

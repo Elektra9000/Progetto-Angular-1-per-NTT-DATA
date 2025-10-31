@@ -2,7 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MATERIAL } from '../../material/material.module';
-import { ApiService, User } from '../../services/api.service';
+import { ApiService } from '../../services/api.service';
+import { User } from '../../models/models';
 
 @Component({
   selector: 'app-proponents',

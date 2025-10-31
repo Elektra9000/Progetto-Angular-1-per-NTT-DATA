@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
 import { environment } from '../../enviroments/environment';
+import { CreatePostPayload } from '../models/models';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -45,8 +46,8 @@ describe('ApiService', () => {
   });
 
   it('createPost sends correct payload and returns created post', (done) => {
-    const payload = { title: 'X', body: 'Y' };
-    const created = { id: 99, title: 'X', body: 'Y' };
+    const payload: CreatePostPayload = { title: 'X', body: 'Y', user_id: 1 };
+    const created = { id: 99, title: 'X', body: 'Y', user_id: 1 };
     service.createPost(payload).subscribe((res) => {
       expect(res).toEqual(created);
       done();
@@ -58,7 +59,7 @@ describe('ApiService', () => {
   });
 
   it('createPost propagates error on failure', (done) => {
-    const payload = { title: 'X', body: 'Y' };
+    const payload: CreatePostPayload = { title: 'X', body: 'Y', user_id: 1 };
     service.createPost(payload).subscribe({
       next: () => fail('should error'),
       error: (err) => {
