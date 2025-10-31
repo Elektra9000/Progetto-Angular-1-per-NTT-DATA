@@ -27,6 +27,7 @@ All dependencies are listed in `package.json`. No global installations required.
 
 ## 📊Test & Coverage
 ✅ 33 unit tests successfully executed
+
 ✅ Overall coverage:
 - Statements: 67.83% (232/342)
 - Branches: 41.75% (38/91)
